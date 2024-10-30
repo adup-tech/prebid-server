@@ -1,0 +1,26 @@
+endpoint: "https://rtb.adup-tech.com/rtb/adupsuite_bid"
+endpointCompression: gzip
+geoscope:
+  - DEU
+  - AUT
+  - CHE
+  - FRA
+  - GBR
+  - NED
+  - ESP
+maintainer:
+  email: "support@adup-tech.com"
+gvlVendorID: 647
+capabilities:
+  app:
+    mediaTypes:
+      - banner
+      - native
+  site:
+    mediaTypes:
+      - banner
+      - native
+userSync:
+  redirect:
+    url: "https://rtb.adup-tech.com/service/usersync?gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&redirect={{.RedirectURL}}"
+    userMacro: "[UID]"
