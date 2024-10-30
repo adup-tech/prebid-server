@@ -79,6 +79,14 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, reqInfo *adapters.E
 		}
 	}
 
+
+	url, err := a.buildEndpointURL(&advImpExt)
+	if err != nil {
+		errors = append(errors, err)
+		continue
+	}
+	
+
 	requestJSON, err := json.Marshal(request)
 	if err != nil {
 		return nil, []error{err}
@@ -88,12 +96,18 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, reqInfo *adapters.E
 
 	requestData := &adapters.RequestData{
 		Method: "POST",
-		Uri:    a.endpoint,
+		Uri:    url,
 		Body:   requestJSON,
 		ImpIDs: openrtb_ext.GetImpIDs(request.Imp),
 	}
 
 	return []*adapters.RequestData{requestData}, nil
+}
+
+// Builds endpoint url based on adapter-specific pub settings from imp.ext
+func (a *adapter) buildEndpointURL(params *openrtb_ext.ExtImpAdView) (string, error) {
+	endpointParams := macros.EndpointTemplateParams{networkId: params.networkId}
+	return macros.ResolveMacros(a.endpoint, endpointParams)
 }
 
 func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.RequestData, responseData *adapters.ResponseData) (*adapters.BidderResponse, []error) {

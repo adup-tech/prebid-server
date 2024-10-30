@@ -12,6 +12,7 @@
       },
       "ext": {
         "bidder": {
+          "networkId": 16,
           "publisher": "123456",
           "placement": "234567"
         }
@@ -35,6 +36,7 @@
           },
           "ext": {
             "bidder": {
+              "networkId": 16,
               "publisher": "123456",
               "placement": "234567"
             }
