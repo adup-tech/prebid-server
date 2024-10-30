@@ -21,7 +21,7 @@
 
   "httpCalls": [{
     "expectedRequest": {
-      "uri": "https://localhost:5050/rtb/adupsuite_bid",
+      "uri": "https://localhost:5050/bid/publisher=123456",
       "body": {
         "id": "test-request-id",
         "site": {
